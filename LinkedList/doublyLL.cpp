@@ -41,18 +41,19 @@ Node *CovertArr2DLL(vector<int> arr)
 
 Node *deletehead(Node *head)
 {
-    if (head == NULL)
-        return NULL;
-    Node *temp = head;
-    head = head->next;
-    head->prev = nullptr;
-    temp->next = nullptr;
-    delete temp;
-    return head;
+  if(head == NULL) return NULL;
+  Node *temp = head;
+  head = head->next;
+  temp->next = nullptr;
+  head->prev = nullptr;
+  delete temp;
+  return head;
+
 }
 
 Node *deleteTail(Node *head)
 {
+
     if (head == NULL || head->next == NULL)
         return NULL;
     Node *tail = head;
@@ -107,6 +108,8 @@ Node *deleteK(Node *head, int k)
     return head;
 }
 
+
+// condition (Node != head)
 void deleteNode(Node *temp)
 {
     Node *fd = temp->next;
@@ -176,7 +179,7 @@ Node *insertK(Node *head, int k, int val)
     else if (front == NULL)
     {
         Node *newNode = new Node(val, nullptr, back);
-        back->next = newNode;
+        back->next = newNode;/
         return head;
     }
     else
@@ -220,8 +223,9 @@ int main()
 {
     vector<int> arr = {12, 4, 6, 9};
     Node *head = CovertArr2DLL(arr);
-    // deleteNode(head->next);
-    head = insertK(head, 1, 123);
+    deleteNode(head->next->next);
+    // head = insertK(head, 1, 123);
+    // head = deletehead(head);
     print(head);
     return 0;
 }

@@ -3,20 +3,21 @@ using namespace std;
 
 void SelectionSort(int arr[], int n)
 {
-    int mini;
+    int maxi;
     for (int i = 0; i <= n - 2; i++)
     {
-        mini = i;
+        maxi = i;
         for (int j = i; j <= n - 1; j++)
         {
-            if (arr[j] < arr[mini])
+            if (arr[j] > arr[maxi])
             {
-                mini = j;
+                maxi = j;
             }
-            int temp = arr[i];
-            arr[i] = arr[mini];
-            arr[mini] = temp;
         }
+
+        int temp = arr[i];
+        arr[i] = arr[maxi];
+        arr[maxi] = temp;
     }
 }
 

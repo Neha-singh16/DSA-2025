@@ -5,6 +5,7 @@ using namespace std;
 
 class Node
 {
+
 public: 
     int data;
     Node *next;
@@ -40,44 +41,44 @@ Node *CovertArr2DLL(vector<int> arr)
 };
 
 
-Node *ReverseDLL(Node *head)
-{
-  if(head == NULL || head->next == NULL) return head;
-  Node* curr = head;
-  stack<int> st;
-  while(curr != NULL){
-    st.push(curr->data);
-    curr = curr->next;
-
-  }
-  curr = head;
-  while(curr != NULL){
-    curr->data = st.top();
-    st.pop();
-    curr = curr->next;
-  }
-
-  return head;
-}
-
-
 // Node *ReverseDLL(Node *head)
 // {
-//     Node *curr = head;
-//     Node *last = nullptr;
-//     while (curr != nullptr)
-//     {
-//         last = curr->prev;
-//         curr->prev = curr->next;
-//         curr->next = last;
-//         curr = curr->prev;
-//     }
-//     if (last != nullptr)
-//     {
-//         head = last->prev;
-//     }
-//     return head;
+//   if(head == NULL || head->next == NULL) return head;
+//   Node* curr = head;
+//   stack<int> st;
+//   while(curr != NULL){
+//     st.push(curr->data);
+//     curr = curr->next;
+
+//   }
+//   curr = head;
+//   while(curr != NULL){
+//     curr->data = st.top();
+//     st.pop();
+//     curr = curr->next;
+//   }
+
+//   return head;
 // }
+
+
+Node *ReverseDLL(Node *head)
+{
+    Node *curr = head;
+    Node *last = nullptr;
+    while (curr != nullptr)
+    {
+        last = curr->prev;
+        curr->prev = curr->next;
+        curr->next = last;
+        curr = curr->prev;
+    }
+    if (last != nullptr) 
+    {
+        head = last->prev;
+    }
+    return head;
+}
 
 void print(Node *head)
 {

@@ -27,31 +27,45 @@ Node(int data1)
 };
 
 
-Node* AddTwoLL(Node* head1 , Node* head2){
-    Node* dummy = new Node(-1);
-    Node* curr = dummy;
-    Node* t1 = head1;
-    Node* t2 = head2;
-    int carry = 0;
-    while(t1!= NULL || t2 != NULL ){
-        int sum = carry;
-        if(t1) sum+= t1->data;
-        if(t2) sum+= t2->data;
-        Node* newNode = new Node(sum%10);
-        carry = sum/10;
-        curr->next = newNode;
-        curr = curr->next;
-        if(t1) t1= t1->next;
-        if(t2) t2 = t2->next;
+Node* ReverseLL(Node* head) {
+    Node* prev = nullptr;
+    Node* curr = head;
+
+    while (curr != nullptr) {
+        Node* nextNode = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextNode;
     }
-    if(carry){
-        Node* newNode = new Node(carry);
-        curr->next = newNode;
-    }
-    return dummy->next;
+    return prev;
 }
 
 
+Node* AddTwoLL(Node* head1 , Node* head2){
+   Node *dummy = new Node(-1);
+   Node *current = dummy;
+   Node *t1 = head1;
+   Node *t2 = head2;
+   int carry = 0;
+   while(t1 != nullptr || t2 != nullptr ){
+    int sum = carry;
+    if(t1) sum += t1->data;
+    if(t2) sum += t2->data;
+    Node *newNode = new Node(sum%10);
+    carry = sum/10;
+    current->next = newNode;
+    current = current->next;
+    if(t1) t1 = t1->next;
+    if(t2) t2= t2->next;
+   }
+
+   if(carry){
+     Node *newNode = new Node(carry);
+     current->next = newNode;
+   }
+
+   return dummy->next;
+}
 
 Node *ConvertArr2DLL(vector<int> arr)
 {
@@ -78,13 +92,17 @@ void print(Node *head)
 
 int main()
 {
-    vector<int> arr1 = {9, 6};
+    vector<int> arr1 = {12, 6 };
     vector<int> arr2 = {5 , 4, 9 ,2};
      Node *head1 = ConvertArr2DLL(arr1);
+     head1 = ReverseLL(head1);
+
      Node *head2 = ConvertArr2DLL(arr2);
+     head2 = ReverseLL(head2);
      Node *head3 = AddTwoLL(head1 , head2);
+    head3 = ReverseLL(head3);
     // deleteNode(head->next);
-    // head = ReverseDLL(head);
+   
     print(head3);
     return 0;
 }

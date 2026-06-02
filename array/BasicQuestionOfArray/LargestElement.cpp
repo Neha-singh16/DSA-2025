@@ -24,7 +24,7 @@ int n;
     cout << "Enter the number of elements: ";
     cin >> n;
     vector<int> arr1(n);
-
+ 
     for (int i = 0; i < n; i++)
     {
         cout << "Enter element n " << i + 1 << ": ";

@@ -13,7 +13,7 @@ int main(){
       cin>> arr[i];
       hash[arr[i]] += 1;
    }
-
+ hu7
 int q;
 cout <<"Enter number of queries: ";
 cin >> q;
